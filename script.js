@@ -3,13 +3,45 @@ const score = document.getElementById('score')
 const days = document.getElementById('days')
 const endscreeen = document.getElementById('endscreen')
 
+daysLeft = 60
+gameOverNumber = 50
+loopPlay = false
+
+
+function start(){
+    count = 0
+    getFaster = 6000
+    daysRemaining = daysLeft
+
+    canvas.innerHTML = ""
+    score.innerHTML = count
+    days.innerHTML = daysRemaining
+
+
+    // make sure to not play loop 
+    loopPlay ? '' : game()
+    loopPlay = true
+
+
+    function game(){
+
+        let randomTime = Math.round(Math.random() * getFaster)
+        getFaster > 700 ? getFaster = (getFaster * 0.99) : ""
+        console.log(getFaster);
+        
+
+        setTimeout(() => {
+            virusPop()
+            game()
+        },randomTime)
+    }
 
 
 
+}
 
 
 
-virusPop()
 
 function virusPop(){
 
