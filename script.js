@@ -1,10 +1,10 @@
 const canvas = document.getElementById('canvas')
 const score = document.getElementById('score')
 const days = document.getElementById('days')
-const endscreeen = document.getElementById('endscreen')
+const endScreen = document.getElementById('endScreen')
 
-daysLeft = 60
-gameOverNumber = 50
+daysLeft = 50
+gameOverNumber = 10
 loopPlay = false
 
 
@@ -31,10 +31,32 @@ function start(){
         
 
         setTimeout(() => {
-            virusPop()
-            game()
+            if(daysRemaining === 0){
+                youWin()
+            }else if (canvas.childElementCount < gameOverNumber){
+                virusPop()
+                game()
+            } else {
+                gameOver()
+            }
         },randomTime)
+
+        const gameOver = ( () => {
+            endScreen.innerHTML = `<div class="gameOver">Game over <br/>score : ${count}</div>`
+            endScreen.style.visibility = ' visible'
+            endScreen.style.opacity = 1
+            loopPlay = false
+        })
     }
+
+
+        const youWin = () => {
+            let accuracy = Math.round(count / daysLeft * 100)
+            endScreen.innerHTML = `<div class="youWin">Bravo ! Tu as gagné<br><span>précision : ${accuracy}%</span></div>`
+            endScreen.style.visibility = ' visible'
+            endScreen.style.opacity = 1
+            loopPlay = false
+        }
 
 
 
@@ -80,4 +102,21 @@ document.addEventListener('click', function(e){
         score.innerHTML = count
     }
 })
+// count down click
 
+
+canvas.addEventListener('click', () => {
+    if(daysRemaining > 0) {
+        daysRemaining--
+        days.innerHTML = daysRemaining
+    }
+})
+
+// hide endscreen after click
+
+endScreen.addEventListener('click', () => {
+
+    start()
+    endScreen.style.opacity = 0
+    endScreen.style.visibility = 'hidden'
+})
