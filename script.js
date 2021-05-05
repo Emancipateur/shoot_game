@@ -2,13 +2,17 @@ const canvas = document.getElementById('canvas')
 const score = document.getElementById('score')
 const days = document.getElementById('days')
 const endScreen = document.getElementById('endScreen')
+const faster = document.getElementById('faster')
 
-daysLeft = 50
-gameOverNumber = 10
+daysLeft = 60
+gameOverNumber = 40
 loopPlay = false
 
 
+
 function start(){
+    var guncock = new Audio("./media/basic-pics/guncocking.wav")
+    guncock.play()
     count = 0
     getFaster = 6000
     daysRemaining = daysLeft
@@ -16,6 +20,10 @@ function start(){
     canvas.innerHTML = ""
     score.innerHTML = count
     days.innerHTML = daysRemaining
+    
+
+      
+
 
 
     // make sure to not play loop 
@@ -24,10 +32,14 @@ function start(){
 
 
     function game(){
-
+// de plus en pus rapide
         let randomTime = Math.round(Math.random() * getFaster)
-        getFaster > 700 ? getFaster = (getFaster * 0.99) : ""
-        console.log(getFaster);
+        getFaster > 1000 ? getFaster = (getFaster * 0.95) : ""
+        faster.innerHTML = getFaster
+       
+
+
+        console.log(canvas.childElementCount);
         
 
         setTimeout(() => {
@@ -62,22 +74,22 @@ function start(){
 
 }
 
-
+let ennemy = [ "./media/basic-pics/lapin.png", "./media/basic-pics/sonic.png"]
 
 
 function virusPop(){
 
     let virus = new Image()
-    virus.src = "./media/basic-pics/pngwave.png"
+    virus.src = "./media/basic-pics/lapin.png"
 
 
     virus.classList.add('virus')
-    virus.style.top = Math.random()* 500 + "px"
-    virus.style.left = Math.random()* 500 + "px"
+    virus.style.top = Math.random()* 400 + "px"
+    virus.style.left = Math.random()* 400 + "px"
 
     let x,y
 
-    x = y = (Math.random()* 45) + 30
+    x = y = (Math.random()* 45) + 100
     virus.style.setProperty('--x',`${ x }px`)
     virus.style.setProperty('--y',`${ y }px`)
 
@@ -120,3 +132,10 @@ endScreen.addEventListener('click', () => {
     endScreen.style.opacity = 0
     endScreen.style.visibility = 'hidden'
 })
+
+
+document.addEventListener('click', (e) => {
+   if(e.target.id !== "start")
+    var audio = new Audio("./media/basic-pics/gunshot.mp3")
+    audio.play()
+})  

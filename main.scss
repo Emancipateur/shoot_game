@@ -10,7 +10,7 @@
 body {
   text-align: center;
   min-height: 100vh;
-  background: url(./media/basic-pics/hospital.jpg) no-repeat 0% 0%/cover;
+  background: url(./media/basic-pics/bg.jpeg) no-repeat 0% 0%/cover;
 
   #endScreen {
     position: absolute;
@@ -126,13 +126,13 @@ body {
     border: none;
     border-top: 1px rgba(66, 0, 0, 0.561) solid;
     border-left: 1px rgba(66, 0, 0, 0.561) solid;
-    background: linear-gradient(135deg,#ff00006b 0%, #ff0000da 100%);
+    background: linear-gradient(135deg,#51ff006b 0%, #a1df11da 100%);
     box-shadow: 0 10px 15px black;
     position: relative;
     margin: 0 auto;
     overflow: hidden;
-    height: 500px;
-    width: 500px;
+    height:700px;
+    width: 700px;
 
     .virus {
       position: absolute;
