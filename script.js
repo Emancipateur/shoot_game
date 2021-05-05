@@ -3,11 +3,12 @@ const score = document.getElementById('score')
 const days = document.getElementById('days')
 const endScreen = document.getElementById('endScreen')
 const faster = document.getElementById('faster')
+const startbutton = document.getElementById('start')
 
 daysLeft = 60
 gameOverNumber = 40
 loopPlay = false
-
+let ennemy = [ "./media/basic-pics/lapin.png", "./media/basic-pics/sonic.png"]
 
 
 function start(){
@@ -74,13 +75,13 @@ function start(){
 
 }
 
-let ennemy = [ "./media/basic-pics/lapin.png", "./media/basic-pics/sonic.png"]
+
 
 
 function virusPop(){
-
+const randomElement = ennemy[Math.floor(Math.random() * ennemy.length)];
     let virus = new Image()
-    virus.src = "./media/basic-pics/lapin.png"
+    virus.src = randomElement
 
 
     virus.classList.add('virus')
@@ -133,9 +134,22 @@ endScreen.addEventListener('click', () => {
     endScreen.style.visibility = 'hidden'
 })
 
-
+// gunshot on start
 document.addEventListener('click', (e) => {
-   if(e.target.id !== "start")
+    
+   if(e.target.id !== "start" && e.target.src !== "http://127.0.0.1:5500/media/basic-pics/sonic.png"){
     var audio = new Audio("./media/basic-pics/gunshot.mp3")
     audio.play()
-})  
+}})
+
+
+document.addEventListener('click', (e) => {
+    if(e.target.src === "http://127.0.0.1:5500/media/basic-pics/sonic.png"){
+        let audioduck = new Audio("./media/basic-pics/duck.wav")
+        audioduck.play()
+   }})
+
+
+
+
+
